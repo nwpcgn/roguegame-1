@@ -4,6 +4,8 @@
 
 @layer base, components, utilities;
 
+/* ------------------------------- App-Layout ------------------------------- */
+
 @layer base {
 	:root {
 		--spacing-base-define: 1rem;
@@ -386,14 +388,13 @@
 		font-size: var(--fs);
 	}
 
-	
-    svg.nwp-icon {
-        font-size: var(--fs, 24px);
-    }
+	svg.nwp-icon {
+		font-size: var(--fs, 24px);
+	}
 
-    svg.pkmn-icon {
-       font-size: var(--fs, 20px);
-    }
+	svg.pkmn-icon {
+		font-size: var(--fs, 20px);
+	}
 
 	.grid-center {
 		display: grid;

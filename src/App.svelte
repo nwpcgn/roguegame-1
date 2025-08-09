@@ -1,5 +1,5 @@
 <script>
-  import T1 from './T1.svelte';
+	import T1 from './T1.svelte'
 
 	import { Router, isActiveLink } from 'sv-router'
 	import { game } from './lib/game.svelte.ts'
@@ -80,7 +80,7 @@
 		<main class="main sky">
 			<Root></Root>
 		</main>
-	<T1></T1>
+		<T1></T1>
 	{:else}
 		<main class="main sky">
 			<section class="nwp page center">

@@ -72,7 +72,7 @@
 	const dispObj = Object.groupBy(disp, ({ group }) => group)
 	const dispH = {
 		options: { icon: 'nwp-settings', title: 'Options' },
-		dungeon: { icon: 'nwp-map', title: 'Dungeon' },  
+		dungeon: { icon: 'nwp-map', title: 'Dungeon' },
 		hero: { icon: 'nwp-story', title: 'Hero' }
 	}
 	let dispV = $derived({
@@ -102,7 +102,7 @@
 					{#each v as { name, icon, slug }, i}
 						<div class="flex items-center gap-1">
 							{@render iconT(icon)}
-							<small class="flex-1 mr-2">{name}</small>
+							<small class="mr-2 flex-1">{name}</small>
 							<span>{dispV[k]?.[i]}</span>
 						</div>
 					{/each}
