@@ -1,9 +1,14 @@
 <script lang="ts">
-	import StatusBar from './StatusBar.svelte'
-
 	import DomMap from '$lib/DomMap.svelte'
 	// import CanMap from '$lib/CanMap.svelte'
-	import { config, dungeon, player, buildMap } from '$lib/game.svelte.ts'
+	import {
+		config,
+		dungeon,
+		player,
+		buildMap,
+		openConfig
+	} from '$lib/game.svelte.ts'
+	import { onMount } from 'svelte'
 	const audio = {}
 	audio.select = new Audio('./audio/blipSelect.mp3')
 	audio.click = new Audio('./audio/click.mp3')
@@ -25,14 +30,6 @@
 		}
 	}
 
-	let dialogEl = $state()
-
-
-	const openConfig = () => {
-		dialogEl.showModal()
-		audioPlayer(audio.click)
-	}
-
 	function movePlayer(dx: number, dy: number) {
 		const newX = player.position.x + dx
 		const newY = player.position.y + dy
@@ -40,7 +37,7 @@
 
 		if (char !== '#') {
 			player.position = { x: newX, y: newY }
-			audioPlayer(audio.coin)
+			audioPlayer(audio.click)
 		} else {
 			audioPlayer(audio.hit)
 		}
@@ -54,57 +51,17 @@
 		if (e.key === 'ArrowLeft') movePlayer(-1, 0)
 		if (e.key === 'ArrowRight') movePlayer(1, 0)
 	}
+
+	onMount(() => {
+		buildMap()
+	})
 </script>
 
 <svelte:window on:keydown={handleKey} />
-
-<div class="main">
-	<div class="page bg-base-100 nwp">
-		<div class="content">
+{#key dungeon.map}
+	<div class="page nwp center">
+		<div class="border">
 			<DomMap></DomMap>
 		</div>
 	</div>
-</div>
-<StatusBar {openConfig}></StatusBar>
-
-<dialog bind:this={dialogEl} class="modal modal-bottom sm:modal-middle">
-	<div class="modal-box">
-		<div class="flex flex-col gap-4">
-			{#each Object.entries(config.stateObj()) as [k, v] (k)}
-				<div class="flex items-center gap-4">
-					<span class="flex-1 capitalize">{k}</span>
-					{#if k === 'type'}
-						<select
-							class="select w-32"
-							onblur={(e) => {
-								config[k] = e.currentTarget.value
-								buildMap()
-							}}
-							value={config.type}>
-							{#each ['Uniform', 'Digger'] as item}
-								<option value={item}>{item}</option>
-							{/each}
-						</select>
-					{:else}
-						<input
-							type="number"
-							value={v}
-							class="input w-24"
-							min={20}
-							max={100}
-							onblur={(e) => {
-								config[k] = e.currentTarget.value
-								buildMap()
-							}} />
-					{/if}
-				</div>
-			{/each}
-		</div>
-		<div class="modal-action">
-			<form method="dialog">
-				<!-- if there is a button in form, it will close the modal -->
-				<button class="btn">Close</button>
-			</form>
-		</div>
-	</div>
-</dialog>
+{/key}

@@ -122,7 +122,7 @@ body {
 	overflow-y: auto;
 
 	&.nwp {
-		animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both;
+		animation: 1.25s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both;
 	}
 
 	&.center {
@@ -155,8 +155,8 @@ body {
 		opacity: 0;
 		transform: scale(0.1);
 		transition:
-			opacity 300ms ease-out,
-			transform 200ms ease-out;
+			opacity 100ms ease-out,
+			transform 100ms ease-out;
 	}
 
 	.active.page {
@@ -164,8 +164,8 @@ body {
 		opacity: 1;
 		transform: scale(1, 1);
 		transition:
-			opacity 400ms ease-in 150ms,
-			transform 400ms ease-in 150ms;
+			opacity 100ms ease-in,
+			transform 100ms ease-in;
 	}
 }
 

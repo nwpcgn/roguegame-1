@@ -3,7 +3,7 @@
 	const tileAtlas = {
 		'#': {
 			char: '#',
-			bc: '#f8f9fa',
+			bc: 'transparent',
 			fc: '#f8f9fa',
 			walkable: false,
 			isAction: false,
@@ -83,6 +83,8 @@
 						{#if isPlayer(x, y)}
 							<span class="bg-info/60"></span>
 						{/if}
+					{:else}
+						<span class="bg-base-100/10">{col}</span>
 					{/if}
 				</span>
 			{/each}

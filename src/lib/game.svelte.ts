@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation'
 import generateMap from './createMap'
 export interface Corridor {
 	_startX: number
@@ -102,6 +103,7 @@ class dungeonMap {
 		this.rooms = data.rooms
 		this.corridors = data.corridors
 		this.freeCells = data.freeCells
+		console.log('created!', this.stateObj())
 	}
 
 	stateObj() {
@@ -139,6 +141,7 @@ class Player {
 export let player = new Player()
 
 export const buildMap = () => {
+	goto('#/game')
 	dungeon.create()
 
 	const randomItem =
@@ -146,3 +149,6 @@ export const buildMap = () => {
 	const [x, y] = randomItem.split(',').map(Number)
 	player.position = { x, y }
 }
+
+export const openConfig = () => goto('#/game/config')
+export const openPlayer = () => goto('#/game/player')

@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { config } from '$lib/game.svelte.ts'
-
+	import StatusBar from '$lib/StatusBar.svelte'
 	let { children } = $props()
-
-	console.log(config.type, config.rows, config.cols)
 </script>
 
-{@render children?.()}
+<main class="main sky">{@render children?.()}</main>
+<StatusBar></StatusBar>
