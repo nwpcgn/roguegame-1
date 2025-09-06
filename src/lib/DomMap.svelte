@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { config, dungeon, player } from '$lib/game.svelte.ts'
+	import { config, dungeon, player, frame } from '$lib/game.svelte.ts'
+	import { cubicOut } from 'svelte/easing'
+	import { Tween } from 'svelte/motion'
 	const tileAtlas = {
 		'#': {
 			char: '#',
@@ -57,15 +59,44 @@
 		}
 	}
 
+	let gridSize = $derived(config.gridSize)
+	let mapWidth = $derived(gridSize * config.cols)
+	let mapHeight = $derived(gridSize * config.rows)
+	let cameraX = new Tween(0, {
+		duration: 400,
+		easing: cubicOut
+	})
+	let cameraY = new Tween(0, {
+		duration: 400,
+		easing: cubicOut
+	})
 	let gridStyle = $derived(
-		`--rg-w: ${config?.cols};--rg-h: ${config?.rows};--rg-s: ${config?.gridSize}px;`
+		`--rg-w: ${config?.cols};--rg-h: ${config?.rows};--rg-s: ${config?.gridSize}px; 
+		--cam-x: -${cameraX.current}px; --cam-y: -${cameraY.current}px; --cam-w: ${frame.camW}px; --cam-h: ${frame.camH}px;`
 	)
+	function updateCamera() {
+		let cx = player.position.x * gridSize - frame.camW / 2 + gridSize / 2
+		let cy = player.position.y * gridSize - frame.camH / 2 + gridSize / 2
+		// Begrenzung an Map-Ränder
+		cx = Math.max(0, Math.min(cx, mapWidth - frame.camW))
+		cy = Math.max(0, Math.min(cy, mapHeight - frame.camH))
+
+		frame.camX = cx
+		frame.camY = cy
+		cameraX.target = cx
+		cameraY.target = cy
+	}
+
 	function isPlayer(x = 0, y = 0) {
 		return x == player.position.x && y == player.position.y
 	}
+
+	$effect(() => {
+		updateCamera(player)
+	})
 </script>
 
-<section>
+<section class="dom-frame">
 	<!-- <pre>{Object.keys(style['.']).join(', ')}</pre> -->
 
 	<div class="rogue-grid" style={gridStyle}>
@@ -101,6 +132,22 @@
 		--rg-w: 20;
 		--rg-h: 20;
 		--rg-s: 20px;
+		--cam-w: 512px;
+		--cam-h: 512px;
+		--cam-x: 0px;
+		--cam-y: 0px;
+	}
+	.dom-frame {
+		width: var(--cam-w);
+		height: var(--cam-h);
+		overflow: hidden;
+		position: relative;
+		border: 2px solid #444;
+	}
+
+	.rogue-grid {
+		position: absolute;
+		transform: translate(var(--cam-x), var(--cam-y));
 	}
 	.rogue-grid {
 		display: grid;

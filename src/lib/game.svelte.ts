@@ -83,7 +83,7 @@ class Config {
 	}
 }
 
-export let config = new Config('Digger', 30, 30, 20, 32)
+export let config = new Config('Digger', 30, 30, 32, 32)
 
 class dungeonMap {
 	map: string[][] = $state(null)
@@ -103,7 +103,7 @@ class dungeonMap {
 		this.rooms = data.rooms
 		this.corridors = data.corridors
 		this.freeCells = data.freeCells
-		console.log('created!', this.stateObj())
+		// console.log('created!', this.stateObj())
 	}
 
 	stateObj() {
@@ -139,6 +139,58 @@ class Player {
 }
 
 export let player = new Player()
+
+class Frame {
+	#frameW: number = $state(512)
+	#frameH: number = $state(512)
+	#camX: number = $state(0)
+	#camY: number = $state(0)
+	#camW: number = $state(512)
+	#camH: number = $state(512)
+	stateObj() {
+		return {
+			size: `${this.#camW}/${this.#camH}`,
+			offset: `${this.#camX}/${this.#camY}`
+		}
+	}
+	get frameW() {
+		return this.#frameW
+	}
+	set frameW(value: number = 0) {
+		this.#frameW = value
+	}
+	get frameH() {
+		return this.#frameH
+	}
+	set frameH(value: number = 0) {
+		this.#frameH = value
+	}
+	get camX() {
+		return this.#camX
+	}
+	set camX(value: number = 0) {
+		this.#camX = value
+	}
+	get camY() {
+		return this.#camY
+	}
+	set camY(value: number = 0) {
+		this.#camY = value
+	}
+	get camW() {
+		return this.#camW
+	}
+	set camW(value = 0) {
+		this.#camW = value
+	}
+	get camH() {
+		return this.#camH
+	}
+	set camH(value = 0) {
+		this.#camH = value
+	}
+}
+export let frame = new Frame()
 
 export const buildMap = () => {
 	goto('#/game')

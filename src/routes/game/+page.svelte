@@ -1,6 +1,6 @@
 <script lang="ts">
 	import DomMap from '$lib/DomMap.svelte'
-	// import CanMap from '$lib/CanMap.svelte'
+	import CanMap from '$lib/CanMap.svelte'
 	import {
 		config,
 		dungeon,
@@ -9,25 +9,29 @@
 		openConfig
 	} from '$lib/game.svelte.ts'
 	import { onMount } from 'svelte'
-	const audio = {}
-	audio.select = new Audio('./audio/blipSelect.mp3')
-	audio.click = new Audio('./audio/click.mp3')
-	audio.explosion = new Audio('./audio/explosion.mp3')
-	audio.hit = new Audio('./audio/hitHurt.mp3')
-	audio.jump = new Audio('./audio/jump.mp3')
-	audio.shoot = new Audio('./audio/laserShoot.mp3')
-	audio.coin = new Audio('./audio/pickupCoin.mp3')
-	audio.upgrade = new Audio('./audio/powerUp.mp3')
-	function audioPlayer(audioEl) {
-		if (audioEl.duration > 0 && !audioEl.paused) {
-			//already playing
-			audioEl.pause()
-			audioEl.currentTime = 0
-			audioEl.play()
-		} else {
-			//not playing
-			audioEl.play()
-		}
+	// const audio = {}
+	// audio.select = new Audio('./audio/blipSelect.mp3')
+	// audio.click = new Audio('./audio/click.mp3')
+	// audio.explosion = new Audio('./audio/explosion.mp3')
+	// audio.hit = new Audio('./audio/hitHurt.mp3')
+	// audio.jump = new Audio('./audio/jump.mp3')
+	// audio.shoot = new Audio('./audio/laserShoot.mp3')
+	// audio.coin = new Audio('./audio/pickupCoin.mp3')
+	// audio.upgrade = new Audio('./audio/powerUp.mp3')
+	// function audioPlayer(audioEl) {
+	// 	if (audioEl.duration > 0 && !audioEl.paused) {
+	// 		//already playing
+	// 		audioEl.pause()
+	// 		audioEl.currentTime = 0
+	// 		audioEl.play()
+	// 	} else {
+	// 		//not playing
+	// 		audioEl.play()
+	// 	}
+	// }
+	let op1 = $state(false)
+	const toggle = () => {
+		op1 = !op1
 	}
 
 	function movePlayer(dx: number, dy: number) {
@@ -37,9 +41,9 @@
 
 		if (char !== '#') {
 			player.position = { x: newX, y: newY }
-			audioPlayer(audio.click)
+			// audioPlayer(audio.click)
 		} else {
-			audioPlayer(audio.hit)
+			// audioPlayer(audio.hit)
 		}
 	}
 
@@ -60,8 +64,17 @@
 <svelte:window on:keydown={handleKey} />
 {#key dungeon.map}
 	<div class="page nwp center">
+		<label class="label">
+			<input type="checkbox" bind:checked={op1} class="toggle toggle-xs" />
+			<span class="text-xs">{op1 ? 'Canvas' : 'DomMap'}</span>
+		</label>
+
 		<div class="border">
-			<DomMap></DomMap>
+			{#if op1}
+				<CanMap></CanMap>
+			{:else}
+				<DomMap></DomMap>
+			{/if}
 		</div>
 	</div>
 {/key}

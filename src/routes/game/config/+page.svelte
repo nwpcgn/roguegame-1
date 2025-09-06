@@ -3,7 +3,7 @@
 </script>
 
 <section class="nwp page center">
-	<div class="card card-border bg-base-100/75 w-sm">
+	<div class="card-border card w-sm bg-base-100/75">
 		<div class="card-body">
 			<h2 class="card-title">Settings</h2>
 			{@render configCard()}
@@ -21,8 +21,8 @@
 				<span class="flex-1 font-semibold capitalize">{k}</span>
 				{#if k === 'type'}
 					<select
-						class="select select-sm w-32"
-						onblur={(e) => {
+						class="select w-32 select-sm"
+						onchange={(e) => {
 							config[k] = e.currentTarget.value
 						}}
 						value={config.type}>
@@ -37,7 +37,7 @@
 						class="input input-sm w-24"
 						min={20}
 						max={100}
-						onblur={(e) => {
+						onchange={(e) => {
 							config[k] = e.currentTarget.value
 						}} />
 				{/if}

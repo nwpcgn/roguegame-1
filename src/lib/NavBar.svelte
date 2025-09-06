@@ -27,7 +27,7 @@
 </script>
 
 <div>
-	<ul class="menu menu-horizontal menu-sm bg-base-200 rounded-box">
+	<ul class="menu menu-horizontal menu-sm rounded-box bg-base-200">
 		{#each nav as { name, href, slug } (slug)}
 			{#if current !== href}
 				<li><a href="#{href}">{name}</a></li>

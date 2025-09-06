@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { drawRoom, drawFloor, drawDoor } from '$lib/tilesCan'
+	import { config, dungeon, player, frame } from '$lib/game.svelte.ts'
 	import { cubicOut } from 'svelte/easing'
 	import { Tween } from 'svelte/motion'
-	let {
-		tileSize = 20,
-		width = 30,
-		height = 30,
-		dungeon,
-		player = { x: 0, y: 0 }
-	} = $props()
+	let tileSize = $derived(config.tileSize)
+	let mapWidth = $derived(tileSize * config.cols)
+	let mapHeight = $derived(tileSize * config.rows)
 
-	let mapWidth = 40
-	let mapHeight = 40
-
-	let frameWidth = 512
-	let frameHeight = 512
 	let canvas: HTMLCanvasElement = $state(null)
 	let ctx: CanvasRenderingContext2D = $state(null)
 
+	let cameraX = new Tween(0, {
+		duration: 400,
+		easing: cubicOut
+	})
+	let cameraY = new Tween(0, {
+		duration: 400,
+		easing: cubicOut
+	})
 	const pathAtlas: Record<
 		string,
 		(
@@ -32,53 +32,58 @@
 		D: drawDoor
 	}
 
-	async function renderMap() {
+	function updateCamera() {
+		let cx = player.position.x * tileSize - frame.camW / 2 + tileSize / 2
+		let cy = player.position.y * tileSize - frame.camH / 2 + tileSize / 2
+
+		// Begrenzung an Map-Ränder
+		cx = Math.max(0, Math.min(cx, mapWidth - frame.camW))
+		cy = Math.max(0, Math.min(cy, mapHeight - frame.camH))
+
+		frame.camX = cx
+		frame.camY = cy
+		cameraX.target = cx
+		cameraY.target = cy
+	}
+
+	function render() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-		for (let y = 0; y < dungeon.map.length; y++) {
-			for (let x = 0; x < dungeon.map[y].length; x++) {
-				const char = dungeon.map[y][x]
-				const drawFn = pathAtlas[char]
-				if (drawFn) {
-					drawFn(ctx, x * tileSize, y * tileSize, tileSize)
+		const startCol = Math.floor(cameraX.current / tileSize)
+		const startRow = Math.floor(cameraY.current / tileSize)
+		const endCol = Math.ceil((cameraX.current + frame.camW) / tileSize)
+		const endRow = Math.ceil((cameraY.current + frame.camH) / tileSize)
+
+		for (let y = startRow; y < endRow; y++) {
+			for (let x = startCol; x < endCol; x++) {
+				if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight) {
+					const drawX = x * tileSize - cameraX.current
+					const drawY = y * tileSize - cameraY.current
+					const char = dungeon.map[y][x]
+					const drawFn = pathAtlas[char]
+					if (drawFn) {
+						drawFn(ctx, drawX, drawY, tileSize)
+					}
+
+					// Spieler zeichnen
+					if (x === player.position.x && y === player.position.y) {
+						ctx.fillStyle = 'gold'
+						ctx.fillRect(drawX, drawY, tileSize, tileSize)
+					}
 				}
 			}
 		}
-
-		ctx.fillStyle = 'green'
-		ctx.fillRect(player.x * tileSize, player.y * tileSize, tileSize, tileSize)
 	}
 
 	$effect(() => {
 		ctx = canvas.getContext('2d')
 		if (!ctx) return
-		renderMap(dungeon)
+
+		updateCamera(player, dungeon)
+		render(player, dungeon)
+		// renderMap(dungeon, player)
 		// Symbol-Cache (einmal laden, dann wiederverwenden)
 	})
 </script>
 
-<section>
-	<canvas
-		class="bg-base-200"
-		bind:this={canvas}
-		width={width * tileSize}
-		height={height * tileSize}></canvas>
-</section>
-
-<!-- <div class="rogue-grid" style={gridStyle}>
-		{#each dungeon.map as row, y}
-			{#each row as col, x}
-				<span
-					class="tile {tileAtlas[col]?.className}"
-					style="background-color: {tileAtlas[col]?.bc}; color: {tileAtlas[col]
-						?.fc};"
-					data-x={x}
-					data-y={y}
-					data-col={col}>
-					{#if col !== '#'}
-						{@render iconT(`${tileAtlas[col]?.type}-tile`)}
-					{/if}
-				</span>
-			{/each}
-		{/each}
-	</div> -->
+<canvas bind:this={canvas} width={frame.camW} height={frame.camH}></canvas>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    // import '../nes.css'
 	import {
 		config,
 		dungeon,
@@ -11,11 +12,11 @@
 
 {#snippet cardT(name = 'Name', data = {}, label = 'Run', action)}
 	<div
-		class="divide-y divide-base-300 rounded-box bg-base-100 px-4 py-2 shadow-lg">
+		class="divide-base-300 rounded-box bg-base-100 divide-y px-4 py-2 shadow-lg">
 		<header class="flex items-center justify-between gap-6">
 			<h2 class="text-lg font-semibold">{name}</h2>
 			{#if action}
-				<button class="btn btn-ghost btn-xs" onclick={action}>{label}</button>
+				<button class="btn btn-soft btn-xs" onclick={action}>{label}</button>
 			{:else}
 				<span></span>
 			{/if}
@@ -30,11 +31,12 @@
 	</div>
 {/snippet}
 
-<aside class="aside bg-base-200 p-4">
+<aside class="aside-dock bg-base-200 p-4 nes">
 	<div class="flex flex-col gap-2">
-		{@render cardT('Player', player.stateObj(), 'Info', openConfig)}
 		{@render cardT('Dungeon', dungeon.stateObj(), 'New', buildMap)}
 		{@render cardT('Settings', config.stateObj(), 'Edit', openConfig)}
+
 		{@render cardT('Fame', frame.stateObj(), null, null)}
+		{@render cardT('Player', player.stateObj(), null, null)}
 	</div>
 </aside>
