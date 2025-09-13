@@ -59,9 +59,9 @@
 		}
 	}
 
-	let gridSize = $derived(config.gridSize)
-	let mapWidth = $derived(gridSize * config.cols)
-	let mapHeight = $derived(gridSize * config.rows)
+	let preSize = $derived(config.tileSize)
+	let mapWidth = $derived(preSize * config.cols)
+	let mapHeight = $derived(preSize * config.rows)
 	let cameraX = new Tween(0, {
 		duration: 400,
 		easing: cubicOut
@@ -71,12 +71,14 @@
 		easing: cubicOut
 	})
 	let gridStyle = $derived(
-		`--rg-w: ${config?.cols};--rg-h: ${config?.rows};--rg-s: ${config?.gridSize}px; 
-		--cam-x: -${cameraX.current}px; --cam-y: -${cameraY.current}px; --cam-w: ${frame.camW}px; --cam-h: ${frame.camH}px;`
+		`--rg-w: ${config?.cols};--rg-h: ${config?.rows};--rg-s: ${config?.preSize}px;`
+	)
+	let camStyle = $derived(
+		`--cam-x: -${cameraX.current}px; --cam-y: -${cameraY.current}px; --cam-w: ${frame.camW}px; --cam-h: ${frame.camH}px;`
 	)
 	function updateCamera() {
-		let cx = player.position.x * gridSize - frame.camW / 2 + gridSize / 2
-		let cy = player.position.y * gridSize - frame.camH / 2 + gridSize / 2
+		let cx = player.position.x * preSize - frame.camW / 2 + preSize / 2
+		let cy = player.position.y * preSize - frame.camH / 2 + preSize / 2
 		// Begrenzung an Map-Ränder
 		cx = Math.max(0, Math.min(cx, mapWidth - frame.camW))
 		cy = Math.max(0, Math.min(cy, mapHeight - frame.camH))
@@ -96,12 +98,12 @@
 	})
 </script>
 
-<section class="dom-frame">
+<section class="dom-frame" style={camStyle}>
 	<!-- <pre>{Object.keys(style['.']).join(', ')}</pre> -->
 
 	<div class="rogue-grid" style={gridStyle}>
-		{#each dungeon.map as row, y}
-			{#each row as col, x}
+		{#each dungeon.map as row, y (y)}
+			{#each row as col, x (x)}
 				<span
 					class="tile"
 					style="background-color: {tileAtlas[col]?.bc}; color: {tileAtlas[col]
@@ -112,7 +114,7 @@
 					{#if col !== '#'}
 						{@render iconT(`${tileAtlas[col]?.type}-tile`)}
 						{#if isPlayer(x, y)}
-							<span class="bg-info/60"></span>
+							<span class="text-warning">{@render iconT(`player-tile`)}</span>
 						{/if}
 					{:else}
 						<span class="bg-base-100/10">{col}</span>
@@ -142,7 +144,6 @@
 		height: var(--cam-h);
 		overflow: hidden;
 		position: relative;
-		border: 2px solid #444;
 	}
 
 	.rogue-grid {

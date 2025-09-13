@@ -1,4 +1,8 @@
-![screenshot](https://i.imgur.com/PJM7bbg.png)
+# Svelte library
+
+Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+
+Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
 
 ## Creating a project
 

@@ -1,0 +1,410 @@
+[
+	{
+		"step": 1,
+		"text": "Du erwachst in einer Zelle des Regime-Gefängnisses. Deine Erinnerungen sind bruchstückhaft. Was tust du?",
+		"op1": "Untersuche die Zellentür",
+		"next1": 2,
+		"op2": "Schau dich nach Waffen um",
+		"next2": 3
+	},
+	{
+		"step": 2,
+		"text": "Die Tür ist schwer bewacht, aber es gibt ein Lüftungsgitter am Boden.",
+		"op1": "Versuche das Gitter zu öffnen",
+		"next1": 4,
+		"op2": "Rufe um Hilfe",
+		"next2": 5
+	},
+	{
+		"step": 3,
+		"text": "Unter deinem Bett findest du eine rostige Klinge. Vielleicht kannst du sie benutzen.",
+		"op1": "Nimm die Klinge und verstecke sie",
+		"next1": 6,
+		"op2": "Lasse sie liegen, um keinen Verdacht zu erregen",
+		"next2": 5
+	},
+	{
+		"step": 4,
+		"text": "Du schaffst es, das Gitter zu öffnen und siehst einen Lüftungsschacht. Ein riskanter Weg.",
+		"op1": "Krabble hinein",
+		"next1": 7,
+		"op2": "Gehe zurück zur Zelle und warte",
+		"next2": 5
+	},
+	{
+		"step": 5,
+		"text": "Ein Wärter hört deine Rufe, nähert sich und öffnet die Tür. Es ist eine Falle!",
+		"op1": "Kämpfe",
+		"next1": 8,
+		"op2": "Täusche Unterwerfung vor",
+		"next2": 9
+	},
+	{
+		"step": 6,
+		"text": "Du versteckst die Klinge in deinem Ärmel. Ein kleiner Schritt zur Freiheit.",
+		"op1": "Untersuche den Wachplan",
+		"next1": 10,
+		"op2": "Schau durch das Fenster deiner Zelle",
+		"next2": 11
+	},
+	{
+		"step": 7,
+		"text": "Der Schacht führt dich in einen dunklen Korridor. Du hörst Stimmen.",
+		"op1": "Verstecke dich im Schatten",
+		"next1": 12,
+		"op2": "Gehe vorsichtig vorwärts",
+		"next2": 13
+	},
+	{
+		"step": 8,
+		"text": "Im Kampf gelingt es dir, den Wärter zu überwältigen, aber der Alarm wird ausgelöst.",
+		"op1": "Fliehe durch den Korridor",
+		"next1": 13,
+		"op2": "Klettere zurück ins Lüftungsgitter",
+		"next2": 7
+	},
+	{
+		"step": 9,
+		"text": "Du spielst den gehorsamen Gefangenen. Der Wärter lässt dich vorerst frei, beobachtet dich aber genau.",
+		"op1": "Schleiche dich zur Wachstube",
+		"next1": 14,
+		"op2": "Sprich mit anderen Gefangenen",
+		"next2": 15
+	},
+	{
+		"step": 10,
+		"text": "Du findest den Wachplan und siehst, dass ein Bewacher alle 10 Minuten den Korridor passiert.",
+		"op1": "Plane deinen Fluchtzeitpunkt",
+		"next1": 16,
+		"op2": "Versuche, den Bewacher zu bestechen",
+		"next2": 17
+	},
+	{
+		"step": 11,
+		"text": "Durch das Fenster siehst du den Hof, bewacht von schwer bewaffneten Soldaten.",
+		"op1": "Versuche, ein Signal zu senden",
+		"next1": 18,
+		"op2": "Suche nach einem alternativen Fluchtweg",
+		"next2": 19
+	},
+	{
+		"step": 12,
+		"text": "Im Schatten entdeckt dich niemand. Du hörst, wie die Wachen diskutieren, dass jemand fliehen will.",
+		"op1": "Lausche weiter",
+		"next1": 20,
+		"op2": "Gehe weiter vorwärts",
+		"next2": 13
+	},
+	{
+		"step": 13,
+		"text": "Du erreichst eine Kreuzung mit zwei Wegen. Einer führt nach oben, der andere nach unten.",
+		"op1": "Gehe nach oben",
+		"next1": 21,
+		"op2": "Gehe nach unten",
+		"next2": 22
+	},
+	{
+		"step": 14,
+		"text": "In der Wachstube findest du Schlüssel und einen Plan der Anlage.",
+		"op1": "Nimm die Schlüssel",
+		"next1": 23,
+		"op2": "Untersuche den Plan genauer",
+		"next2": 24
+	},
+	{
+		"step": 15,
+		"text": "Andere Gefangene erzählen dir von einem Widerstand im Untergrund.",
+		"op1": "Schließe dich dem Widerstand an",
+		"next1": 25,
+		"op2": "Vertraue niemandem und bleibe allein",
+		"next2": 26
+	},
+	{
+		"step": 16,
+		"text": "Du wartest auf den Wachwechsel und bereitest dich auf einen Sprung vor.",
+		"op1": "Springe jetzt",
+		"next1": 27,
+		"op2": "Warte noch eine Runde",
+		"next2": 28
+	},
+	{
+		"step": 17,
+		"text": "Du versuchst, den Bewacher mit einem kleinen Geschenk zu bestechen, aber er lacht dich aus.",
+		"op1": "Versuche Gewalt",
+		"next1": 8,
+		"op2": "Ziehe dich zurück",
+		"next2": 5
+	},
+	{
+		"step": 18,
+		"text": "Dein Signal wird bemerkt, und ein Drohnenalarm ertönt.",
+		"op1": "Verstecke dich",
+		"next1": 20,
+		"op2": "Kämpfe gegen die Drohnen",
+		"next2": 29
+	},
+	{
+		"step": 19,
+		"text": "Du findest einen versteckten Lüftungsschacht hinter einer Wandverkleidung.",
+		"op1": "Klettere hinein",
+		"next1": 7,
+		"op2": "Ignoriere ihn und suche weiter",
+		"next2": 30
+	},
+	{
+		"step": 20,
+		"text": "Du hörst, wie die Wachen sich vorbereiten, die Zellen zu durchsuchen.",
+		"op1": "Verstecke dich im Schatten",
+		"next1": 12,
+		"op2": "Bereite dich auf den Kampf vor",
+		"next2": 8
+	},
+	{
+		"step": 21,
+		"text": "Oben findest du den Ausgang, aber der Hof ist schwer bewacht.",
+		"op1": "Versuche, unbemerkt zu passieren",
+		"next1": 31,
+		"op2": "Bereite einen Angriff vor",
+		"next2": 32
+	},
+	{
+		"step": 22,
+		"text": "Unten findest du einen alten Versorgungstunnel, der ins Freie führt.",
+		"op1": "Gehe hinein",
+		"next1": 33,
+		"op2": "Gehe zurück zur Kreuzung",
+		"next2": 13
+	},
+	{
+		"step": 23,
+		"text": "Mit den Schlüsseln kannst du mehrere Türen öffnen.",
+		"op1": "Öffne die Zellentür neben dir",
+		"next1": 34,
+		"op2": "Öffne die Tür zur Waffenkammer",
+		"next2": 35
+	},
+	{
+		"step": 24,
+		"text": "Der Plan zeigt versteckte Sicherheitskameras und Patrouillenzeiten.",
+		"op1": "Plane deinen Weg anhand des Plans",
+		"next1": 36,
+		"op2": "Verbrenne den Plan, um keine Spuren zu hinterlassen",
+		"next2": 26
+	},
+	{
+		"step": 25,
+		"text": "Der Widerstand bietet dir Waffen und einen Fluchtplan an.",
+		"op1": "Nimm das Angebot an",
+		"next1": 37,
+		"op2": "Lehne ab und vertraue nur dir selbst",
+		"next2": 26
+	},
+	{
+		"step": 26,
+		"text": "Alleine bist du leichter zu übersehen, aber auch verletzlicher.",
+		"op1": "Verstecke dich",
+		"next1": 12,
+		"op2": "Kämpfe gegen die Wachen",
+		"next2": 8
+	},
+	{
+		"step": 27,
+		"text": "Du springst genau im richtigen Moment und entkommst der Wache.",
+		"op1": "Laufe zum Ausgang",
+		"next1": 31,
+		"op2": "Verstecke dich im Hof",
+		"next2": 38
+	},
+	{
+		"step": 28,
+		"text": "Du wartest zu lange und wirst entdeckt.",
+		"op1": "Kämpfe um dein Leben",
+		"next1": 8,
+		"op2": "Gib dich geschlagen",
+		"next2": 9
+	},
+	{
+		"step": 29,
+		"text": "Die Drohnen zerstören deine Deckung, aber du kannst eine abschießen.",
+		"op1": "Fliehe",
+		"next1": 13,
+		"op2": "Kämpfe weiter",
+		"next2": 8
+	},
+	{
+		"step": 30,
+		"text": "Du findest eine versteckte Kammer mit Munition und Proviant.",
+		"op1": "Nimm die Vorräte",
+		"next1": 39,
+		"op2": "Lass sie liegen und gehe weiter",
+		"next2": 13
+	},
+	{
+		"step": 31,
+		"text": "Du bist fast draußen, aber die Sirenen heulen auf.",
+		"op1": "Renne zum Tor",
+		"next1": 40,
+		"op2": "Verstecke dich hinter einem Fahrzeug",
+		"next2": 38
+	},
+	{
+		"step": 32,
+		"text": "Du startest einen Angriff, überraschst die Wachen, aber es ist ein riskanter Schritt.",
+		"op1": "Kämpfe weiter",
+		"next1": 41,
+		"op2": "Ziehe dich zurück",
+		"next2": 38
+	},
+	{
+		"step": 33,
+		"text": "Der Versorgungstunnel ist dunkel und feucht, aber ein Ausgang ist in Sicht.",
+		"op1": "Gehe weiter",
+		"next1": 42,
+		"op2": "Drehe um und suche einen anderen Weg",
+		"next2": 13
+	},
+	{
+		"step": 34,
+		"text": "Die Zellentür öffnet sich und du befreist einen Verbündeten.",
+		"op1": "Gemeinsam weiterfliehen",
+		"next1": 25,
+		"op2": "Alleine weiter",
+		"next2": 26
+	},
+	{
+		"step": 35,
+		"text": "In der Waffenkammer findest du eine Pistole mit wenig Munition.",
+		"op1": "Nimm die Pistole",
+		"next1": 39,
+		"op2": "Lasse sie liegen",
+		"next2": 26
+	},
+	{
+		"step": 36,
+		"text": "Mit dem Plan kannst du die Überwachung umgehen und unbemerkt passieren.",
+		"op1": "Gehe vorwärts",
+		"next1": 31,
+		"op2": "Gehe zurück",
+		"next2": 13
+	},
+	{
+		"step": 37,
+		"text": "Der Widerstand bietet dir an, eine geheime Nachricht zu überbringen.",
+		"op1": "Nimm den Auftrag an",
+		"next1": 43,
+		"op2": "Lehne ab",
+		"next2": 26
+	},
+	{
+		"step": 38,
+		"text": "Du versteckst dich und wartest, bis die Alarmierung abklingt.",
+		"op1": "Schleiche dich davon",
+		"next1": 44,
+		"op2": "Kämpfe dich durch",
+		"next2": 41
+	},
+	{
+		"step": 39,
+		"text": "Mit Vorräten besser ausgerüstet fühlst du dich sicherer.",
+		"op1": "Setze deinen Weg fort",
+		"next1": 31,
+		"op2": "Verstecke dich und warte",
+		"next2": 38
+	},
+	{
+		"step": 40,
+		"text": "Du erreichst das Tor, aber es ist verschlossen und wird bewacht.",
+		"op1": "Versuche, es aufzubrechen",
+		"next1": 45,
+		"op2": "Schleiche dich um das Tor herum",
+		"next2": 44
+	},
+	{
+		"step": 41,
+		"text": "Der Kampf ist heftig, aber du bist entschlossen zu überleben.",
+		"op1": "Greife an",
+		"next1": 46,
+		"op2": "Ziehe dich zurück",
+		"next2": 38
+	},
+	{
+		"step": 42,
+		"text": "Der Tunnel endet in einem verborgenen Ausgang außerhalb der Anlage.",
+		"op1": "Fliehe in die Freiheit",
+		"next1": "END",
+		"op2": "Zurück zum Tunnel",
+		"next2": 33
+	},
+	{
+		"step": 43,
+		"text": "Du überbringst die Nachricht und gewinnst das Vertrauen des Widerstands.",
+		"op1": "Schließe dich dem Widerstand offiziell an",
+		"next1": 25,
+		"op2": "Bleibe misstrauisch",
+		"next2": 26
+	},
+	{
+		"step": 44,
+		"text": "Du bist entkommen, aber die Jagd ist noch nicht vorbei.",
+		"op1": "Plane deinen nächsten Schritt",
+		"next1": 47,
+		"op2": "Ruhe dich aus",
+		"next2": 48
+	},
+	{
+		"step": 45,
+		"text": "Das Tor gibt nach einem lauten Knacken nach.",
+		"op1": "Renne hinaus",
+		"next1": 42,
+		"op2": "Bereite dich auf Verfolger vor",
+		"next2": 41
+	},
+	{
+		"step": 46,
+		"text": "Du besiegst die Gegner, aber es kostet dich Kraft.",
+		"op1": "Setze die Flucht fort",
+		"next1": 42,
+		"op2": "Verstecke dich zum Ausruhen",
+		"next2": 48
+	},
+	{
+		"step": 47,
+		"text": "Du hast nun Verbündete und eine Mission gegen das Regime.",
+		"op1": "Bereite deinen Angriff vor",
+		"next1": 49,
+		"op2": "Sammle weitere Informationen",
+		"next2": 50
+	},
+	{
+		"step": 48,
+		"text": "Du findest einen sicheren Unterschlupf zum Ausruhen.",
+		"op1": "Regeneriere Kräfte",
+		"next1": 51,
+		"op2": "Gehe weiter auf Nummer sicher",
+		"next2": 44
+	},
+	{
+		"step": 49,
+		"text": "Dein Angriff wird zum Symbol des Widerstands.",
+		"op1": "Glückwunsch! Du hast die Geschichte abgeschlossen.",
+		"next1": null,
+		"op2": null,
+		"next2": null
+	},
+	{
+		"step": 50,
+		"text": "Mehr Informationen könnten deine Chancen verbessern.",
+		"op1": "Suche weitere Verbündete",
+		"next1": 25,
+		"op2": "Fahre fort ohne Hilfe",
+		"next2": 26
+	},
+	{
+		"step": 51,
+		"text": "Du bist bereit für den nächsten Schritt in deinem Kampf.",
+		"op1": "Fahre fort",
+		"next1": 47,
+		"op2": "Bleibe und plane",
+		"next2": 48
+	}
+]

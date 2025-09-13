@@ -5,24 +5,35 @@ export const load = (async () => {
 		nav: [
 			{
 				slug: 'start',
-				name: 'Lobby',
 				href: '/',
-				icon: 'nwp-home',
-				hidden: false
+				name: 'Lobby',
+				icon: 'rpg-lobby',
+				title: 'Darkwood Manner',
+				type: 'page'
 			},
 			{
-				slug: 'game',
-				name: 'Game',
-				href: '/game',
-				icon: 'nwp-game',
-				hidden: false
+				slug: 'map',
+				href: '/map',
+				name: 'World',
+				icon: 'rpg-map',
+				title: 'Dungeon-Map',
+				type: 'page'
 			},
 			{
-				slug: 'editor',
-				name: 'Editor',
-				href: '/editor',
-				icon: 'nwp-options',
-				hidden: false
+				slug: 'arena',
+				href: '/arena',
+				name: 'Arena',
+				icon: 'rpg-arena',
+				title: 'Battleground',
+				type: 'page'
+			},
+			{
+				slug: 'settings',
+				href: '/settings',
+				name: 'Settings',
+				icon: 'rpg-settings',
+				title: 'Options',
+				type: 'page'
 			}
 		]
 	}

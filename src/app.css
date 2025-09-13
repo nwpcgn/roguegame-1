@@ -1,6 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Jersey+25&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=MedievalSharp&family=Press+Start+2P&display=swap');
 @import 'tailwindcss';
 @plugin "daisyui";
+
+@plugin "daisyui/theme" {
+	name: 'fantasy';
+	default: true;
+	prefersdark: false;
+	color-scheme: 'light';
+	--color-base-100: oklch(100% 0 0);
+	--color-base-200: oklch(93% 0 0);
+	--color-base-300: oklch(86% 0 0);
+	--color-base-content: oklch(27% 0.041 260.031);
+	--color-primary: oklch(37.45% 0.189 325.02);
+	--color-primary-content: oklch(87.49% 0.037 325.02);
+	--color-secondary: oklch(53.92% 0.162 241.36);
+	--color-secondary-content: oklch(90.784% 0.032 241.36);
+	--color-accent: oklch(75.98% 0.204 56.72);
+	--color-accent-content: oklch(15.196% 0.04 56.72);
+	--color-neutral: oklch(27.807% 0.029 256.847);
+	--color-neutral-content: oklch(85.561% 0.005 256.847);
+	--color-info: oklch(72.06% 0.191 231.6);
+	--color-info-content: oklch(0% 0 0);
+	--color-success: oklch(64.8% 0.15 160);
+	--color-success-content: oklch(0% 0 0);
+	--color-warning: oklch(84.71% 0.199 83.87);
+	--color-warning-content: oklch(0% 0 0);
+	--color-error: oklch(71.76% 0.221 22.18);
+	--color-error-content: oklch(0% 0 0);
+	--radius-selector: 0.5rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.5rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 1;
+	--noise: 0;
+}
+
+/* @import './nes.css'; */
 
 /* @import 'tailwindcss'; */
 /* @plugin '@tailwindcss/forms'; */
@@ -16,6 +53,7 @@
 	--page-animation-delay: 0.2s;
 	--page-transform-duration: 0.5s;
 	--page-transform-delay: 0.1s;
+	--n: rgba(63, 63, 70, 0.456);
 }
 
 :root {
@@ -32,7 +70,7 @@
 	--content-space: var(--spacing-base);
 	--page-space: var(--content-space);
 	--family-1: 'Press Start 2P', system-ui;
-	--family-2: 'Jersey 25', sans-serif;
+	--family-2: 'MedievalSharp', cursive;
 	--family-3: 'Fira Code', monospace;
 }
 
@@ -52,6 +90,24 @@ body {
 		url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=),
 		auto;
 	font-family: var(--family-1);
+}
+
+.heading-2 {
+	font-family: 'MedievalSharp', cursive;
+	/* font-weight: 400;
+	font-style: normal; */
+}
+
+.heading-1 {
+	font-family: 'Press Start 2P', system-ui;
+	/* font-weight: 400;
+	font-style: normal; */
+}
+
+.fira-code {
+	font-family: 'Fira Code', monospace;
+	font-optical-sizing: auto;
+	font-style: normal;
 }
 
 .app-1 {
@@ -122,7 +178,11 @@ body {
 	overflow-y: auto;
 
 	&.nwp {
-		animation: 1.25s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both;
+		animation: 1.5s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both 0.2s;
+	}
+
+	&.fix {
+		overflow-y: hidden;
 	}
 
 	&.center {
@@ -167,6 +227,41 @@ body {
 			opacity 100ms ease-in,
 			transform 100ms ease-in;
 	}
+}
+svg.icon,
+svg.nwp-icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
+}
+svg.icon,
+svg.nwp-icon {
+	--fs: 24px;
+	font-size: var(--fs);
+}
+svg.icon-lg {
+	--fs: 32px;
+}
+svg.icon-xl {
+	--fs: 48px;
+}
+
+.img-grid {
+	--min: 68px;
+	--gap: 0.5rem;
+
+	display: grid;
+	grid-gap: var(--gap);
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+}
+.img-grid figure {
+	display: grid;
+	place-content: center;
+	aspect-ratio: 1/1;
+	border: 1px dashed red;
 }
 
 /* ------------------------------- Key Frames ------------------------------- */
@@ -226,7 +321,7 @@ body {
 
 /* For presentation only, no need to copy the code below */
 hgroup {
-	font-family: var(--family-1);
+	font-family: var(--family-2);
 
 	h1 {
 		font-size: 2lh;
